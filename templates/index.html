@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block navbar %}<ul class="navbar-nav mr-sm-2"><a href="/logout" class="btn btn-outline-info">Log Out</a></ul>{% endblock %}
+
+{% block main %}
+<div class="d-flex justify-content-between"><a href="#about" class="btn btn-outline-info btn-sm">About</a>
+{% if rewards %}<h5 title="You earned an achievement! Keep reading to collect them all!">{% for emoji in rewards|reverse %}&#{{ emoji }};{% endfor %}</h5>{% endif %}
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>   
+            <th class="text-start">Year</th>
+            <th class="text-start">Author</th>
+            <th class="text-start">Title</th>
+            <th class="text-end">Read</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in hugos %}
+            <tr>
+                <td class="text-start"><small>{{ row.1 }}</small></td>
+                <td class="text-start">
+                    <a class="link-dark" style="text-decoration: none" href="https://en.wikipedia.org/w/index.php?go=Go&search={{ row.2 }}">{{ row.2 }}</a>
+                </td>
+                <td class="text-start">
+                    <a class="text-decoration-none" href="/view?id={{ row.0 }}">{{ row.3 }}</a>
+                </td>
+                <td class="text-end">
+                    {% if row.5 %}&#128221;&nbsp;&nbsp;{% endif %}{% if row.4 %}&#9745;{% else %}&#9744;{% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="py-5 container">
+    <p class="lead" id="about">
+        <!-- <p>Thanks for using this booklog! I hope you enjoy reading through the Hugo Award Winners and cataloging your journey herein.</p> -->
+        <p>Click on a title to view/edit your notes, rating, and read status.</p>
+        <p>&#128221; will appear beside any titles you have saved notes for.</p>
+        <p>Authors' names link to their respective Wikipedia page.</p>
+        <a href="#" class="btn btn-outline-info btn-sm">Beam Me Up</a>
+    </h2>
+</div>
+{% endblock %}

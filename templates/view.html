@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %} - {{ hugos.0.3 }}{% endblock %}
+
+{% block navbar %}<ul class="navbar-nav mr-sm-2"><a href="/logout" class="btn btn-outline-info">Log Out</a></ul>{% endblock %}
+
+{% block main %}
+
+<div class="container">
+    <h1 class="display-5">{{ hugos.0.3 }}</h1>
+    <p class="lead">by {{ hugos.0.2 }} ({{ hugos.0.1 }})</p>
+</div>
+<div class="container">
+   <p class="lead">
+    {% if user %}
+        {% if user.0.4 %}
+            &#9745;
+        {% else %}
+            &#9744;
+        {% endif %}
+    {% else %}
+        &#9744;
+    {% endif %}
+    Read?
+   </p>
+</div>
+{% if user %}
+    {% if user.0.3 %}
+        <div class="container">
+            <p class="lead">
+                Rating
+            <br>
+            {% for x in range(user.0.3) %}&#11088;{% endfor %}
+            {% for x in range(user.0.3,5) %}&#10025;{% endfor %}
+            </p>
+        </div>
+    {% endif %}
+{% endif %}
+{% if user %}
+<div class="container">
+    <p class="lead">
+        Notes
+    </p>
+    {% if user.0.2 %}
+    <pre class="text-start" style="border-width:1px; border-style:solid; padding: 1em; white-space: pre-wrap;">{{ user.0.2 }}</pre>
+    {% else %}
+    <pre style="border-width:1px; border-style:solid; padding: 1em;"><em>No notes yet...</em></pre>
+    {% endif %}
+</div>
+{% else %}
+<div class="container">
+    <em class="fw-light">Edit to mark as read and add rating/notes...</em>
+</div>
+{% endif %}
+<br>
+<div class="container">
+    <p>    
+        <a href="/edit?id={{ bookid }}" class="btn btn-info">Edit</a>
+   </p>
+</div>
+{% endblock %}

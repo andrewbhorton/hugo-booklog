@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %} - Error {{ code }}{% endblock %}
+
+{% block navbar %}<ul class="navbar-nav mr-sm-2"><button onclick="history.back()" class="btn btn-outline-danger">Go Back</button></ul>{% endblock %}
+
+{% block main %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">&#129335 Error {{ code }}</h1>
+      <p class="lead">{{ message }}</p>
+    </div>
+</div>
+{% endblock %}

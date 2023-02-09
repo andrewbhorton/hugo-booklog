@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %} - {{ result.0.3 }} [Edit]{% endblock %}
+
+{% block navbar %}<ul class="navbar-nav mr-sm-2"><a href="/logout" class="btn btn-outline-info">Log Out</a></ul>{% endblock %}
+
+{% block javascript %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    let rating = document.querySelector('#rating');
+    rating.value = document.querySelector('#selectrating').value;
+  })
+</script>
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h1 class="display-5">{{ result.0.3 }}</h1>
+    <p class="lead">by {{ result.0.2 }} ({{ result.0.1 }})</p>
+</div>
+<form action="/edit" method="post">
+  <div class="form-group">
+      <div class="form-check form-check-inline">
+        <label for="read" class="lead">Mark as read?</label>
+          <input class="form-check-input" type="checkbox" id="read" name="read" value="1" autofocus{% if userdata %}{% if userdata.0.4 %} checked{% endif %}{% endif %}>
+      </div>
+  </div><br>
+  <div class="form-group">
+    <label for="rating" class="lead">Rating</label><br>
+    <select class="custom-select mr-sm-2" id="rating" name="rating">
+      <option value="0" selected>-</option>
+      <option value="1">&#11088;</option>
+      <option value="2">&#11088;&#11088;</option>
+      <option value="3">&#11088;&#11088;&#11088;</option>
+      <option value="4">&#11088;&#11088;&#11088;&#11088;</option>
+      <option value="5">&#11088;&#11088;&#11088;&#11088;&#11088;</option>
+    </select>
+  </div><br>
+  <div class="form-group">
+    <label for="notes" class="lead">Notes</label>
+    <textarea class="form-control" id="note" name="notes" rows="5" maxlength="5000"{% if userdata %}{% if userdata.0.2 %}>{{ userdata.0.2 }}</textarea>{% else %} placeholder="Enter your notes here..."></textarea>{% endif %}{% else %} placeholder="Enter your notes here..."></textarea>{% endif %}
+  </div><br>
+  <div class="form-group">
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <a href="/view?id={{ bookid }}" class="btn btn-secondary" role="button">Cancel</a>
+  </div>
+  <input type="hidden" id="bookid" name="bookid" value="{{ bookid }}">
+  <input type="hidden" id="selectrating" name="selectrating" value="{% if userdata %}{% if userdata.0.3 %}{{ userdata.0.3 }}{% endif %}{% endif %}">
+</form>
+{% endblock %}
+
