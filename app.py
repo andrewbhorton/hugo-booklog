@@ -27,8 +27,10 @@ Session(app)
 # connection = sqlite3.connect("booklog.db", check_same_thread=False)
 # db = connection.cursor()
 
+DATABASE_URL = os.environ['DATABASE_URL']
+
 def getdbconn():
-    conn = psycopg2.connect(host='localhost', database='booklog_db', user=os.environ['DB_USERNAME'], password=os.environ['DB_PASSWORD'])
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     return conn
 
 
