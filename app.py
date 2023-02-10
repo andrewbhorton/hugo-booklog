@@ -8,7 +8,7 @@
 
 import os
 import psycopg2
-from flask import Flask, redirect, render_template, request, session
+from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 # can delete once postgres is implemented
 # import sqlite3
