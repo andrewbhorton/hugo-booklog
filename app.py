@@ -8,7 +8,7 @@
 
 import os
 import psycopg2
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, redirect, render_template, request, session
 from flask_session import Session
 # can delete once postgres is implemented
 # import sqlite3
@@ -186,7 +186,6 @@ def register():
         session["username"] = user[0][1]
         db.close()
         conn.close()
-        flash('Welcome! Select a book title to edit details. Press About to learn more.')
         return redirect("/")
     else:
         return render_template("register.html")
