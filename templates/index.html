@@ -1,7 +1,7 @@
-{% extends "layout.html" %}{% block navbar %}<ul class="navbar-nav mr-sm-2"><a href="#about" class="btn btn-outline-primary btn-sm">About</a>&nbsp<a href="/logout" class="btn btn-outline-info btn-sm">Log Out</a></ul>{% endblock %}
+{% extends "layout.html" %}{% block navbar %}<ul class="navbar-nav mr-sm-2"><a href="/logout" class="btn btn-outline-info">Log Out</a></ul>{% endblock %}
 
 {% block main %}
-<div class="d-flex justify-content-between">
+<div class="d-flex justify-content-between"><a href="#about" class="btn btn-outline-primary btn-sm">About</a>
 {% if rewards %}<h5 title="You earned an achievement! Keep reading to collect them all!">{% for emoji in rewards|reverse %}&#{{ emoji }};{% endfor %}</h5>{% endif %}
 </div>
 <table class="table table-striped">
