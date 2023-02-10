@@ -3,17 +3,7 @@
 {% block navbar %}<ul class="navbar-nav mr-sm-2"><a href="/logout" class="btn btn-outline-info">Log Out</a></ul>{% endblock %}
 
 {% block main %}
-
-<div class="d-flex justify-content-between"><a href="#about" class="btn btn-outline-info btn-sm">About</a>
-  {% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
+<div class="d-flex justify-content-between"><a href="#about" class="btn btn-outline-primary btn-sm">About</a>
 {% if rewards %}<h5 title="You earned an achievement! Keep reading to collect them all!">{% for emoji in rewards|reverse %}&#{{ emoji }};{% endfor %}</h5>{% endif %}
 </div>
 <table class="table table-striped">
